@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="style.css">
+    <title>FPS Mouse DPI Visualizer</title>
+
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="card grid">
+            <section>
+                <h1>Interactive FPS Mouse DPI Visualizer</h1>
+                <p>See how far your crosshair would move for a given <b>DPI</b>, in-game <b>sensitivity</b>, and
+                    physical mouse movement (<b>inches</b>). The length shown is proportional to <b>eDPI = DPI ×
+                        Sensitivity</b> and scales with the inches moved.</p>
+
+                <div class="row">
+                    <label for="dpi">Mouse DPI</label>
+                    <input id="dpi" type="number" min="100" max="6400" step="50" value="800">
+                </div>
+
+                <div class="row">
+                    <label for="sens">In‑game Sensitivity</label>
+                    <input id="sens" type="number" min="0.05" max="5" step="0.01" value="0.5">
+                </div>
+
+                <div class="row">
+                    <label for="inches">Inches moved (physical)</label>
+                    <input id="inches" type="range" min="0" max="5" step="0.1" value="1">
+                </div>
+
+                <div class="pill" id="edpiPill">eDPI: <b id="edpi">400</b> • Inches: <b id="inchVal">1.0</b></div>
+
+                <div class="btns">
+                    <button data-preset="400,0.5" title="400 DPI × 0.5 sens">Low (pro‑style)</button>
+                    <button data-preset="800,0.5" title="800 DPI × 0.5 sens">Balanced</button>
+                    <button data-preset="1600,0.5" title="1600 DPI × 0.5 sens">Fast</button>
+                    <button data-preset="800,0.35" title="Popular Valorant range">VAL‑ish</button>
+                    <button data-preset="400,2" title="Same eDPI as 800×1">eDPI Equiv</button>
+                    <button id="animate" class="primary">Animate 1 inch ▶</button>
+                    <button id="reset">Reset</button>
+                </div>
+                <p class="small muted">Note: Games apply additional scaling (FOV, yaw, accel). This demo shows
+                    <i>relative</i> distances to compare settings, not exact pixel counts.
+                </p>
+            </section>
+
+            <section>
+                <canvas id="stage" width="760" height="340" aria-label="Crosshair movement canvas"></canvas>
+                <div class="legend">
+                    <span class="chip"><span class="swatch" style="background:#6ee7ff"></span> Start</span>
+                    <span class="chip"><span class="swatch" style="background:#8b80ff"></span> End (current)</span>
+                    <span class="chip"><span class="swatch" style="background:#ff6b6b"></span> 1‑inch benchmark (400 /
+                        800 / 1600 eDPI)</span>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
